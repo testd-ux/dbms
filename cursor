@@ -1,0 +1,100 @@
+Got it 👍. I’ll write the PL/SQL codes from your notes neatly and correctly.
+
+
+---
+
+Query 1 – Cursor Example (Employee Names & SSN)
+
+DECLARE
+    id emp52.ssn%TYPE;
+    name emp52.fname%TYPE;
+    CURSOR cu IS SELECT ssn, fname FROM emp52;
+BEGIN
+    OPEN cu;
+    LOOP
+        FETCH cu INTO id, name;
+        EXIT WHEN cu%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(id || '   ' || name);
+    END LOOP;
+    CLOSE cu;
+END;
+/
+
+Output:
+
+12345678   John
+834445555  Franklin
+999887777  Alicia
+987654321  Jennifer
+666884444  Ramesh
+453453453  Joyce
+929898987  Ahmad
+987987987  James
+
+
+---
+
+Query 2 – Create Table & Insert Values
+
+CREATE TABLE employ (
+    empno INTEGER,
+    bpay  INTEGER,
+    allow INTEGER,
+    total INTEGER
+);
+
+INSERT INTO employ VALUES (31234, 25000, 1200, 0);
+INSERT INTO employ VALUES (41242, 27000, 1000, 0);
+INSERT INTO employ VALUES (12345, 30000, 2100, 0);
+INSERT INTO employ VALUES (23415, 23000, 1200, 0);
+
+Initial Table:
+
+EMPNO    BPAY    ALLOW   TOTAL
+31234    25000   1200    0
+41242    27000   1000    0
+12345    30000   2100    0
+23415    23000   1200    0
+
+
+---
+
+Query 3 – Cursor to Update Total Salary
+
+DECLARE
+    empnox employ.empno%TYPE;
+    bpayx  employ.bpay%TYPE;
+    allowx employ.allow%TYPE;
+    totalx employ.total%TYPE;
+
+    CURSOR empc IS SELECT empno, bpay, allow FROM employ;
+BEGIN
+    OPEN empc;
+    LOOP
+        FETCH empc INTO empnox, bpayx, allowx;
+        EXIT WHEN empc%NOTFOUND;
+
+        totalx := bpayx + allowx;
+
+        UPDATE employ
+        SET total = totalx
+        WHERE empno = empnox;
+    END LOOP;
+    CLOSE empc;
+END;
+/
+
+Final Output Table:
+
+EMPNO    BPAY    ALLOW   TOTAL
+31234    25000   1200    26200
+41242    27000   1000    28000
+12345    30000   2100    32100
+23415    23000   1200    24200
+
+
+---
+
+Do you want me to also combine all queries into one full PL/SQL script (with table creation, insertion, and cursor operations together), so you can run it in one go?
+
+

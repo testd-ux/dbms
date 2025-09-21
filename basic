@@ -1,0 +1,148 @@
+Got it 👍. The pictures you shared are handwritten PL/SQL blocks (queries) with their outputs. I’ll write them down neatly in text/code format so you can copy/use them directly.
+
+
+---
+
+Query 1 – Sum of Two Numbers
+
+DECLARE
+    a NUMBER(2);
+    b NUMBER(2);
+    d NUMBER(2);
+BEGIN
+    a := &a;
+    b := &b;
+    d := a + b;
+    DBMS_OUTPUT.PUT_LINE('Sum of the number is: ' || d);
+END;
+/
+
+Sample Output:
+
+Enter value for a: 5
+Enter value for b: 7
+Sum of the number is: 12
+
+
+---
+
+Query 2 – Check Even or Odd
+
+DECLARE
+    n NUMBER(2);
+    r NUMBER(2);
+BEGIN
+    n := &n;
+    r := MOD(n, 2);
+
+    IF r = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('The number is even');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('The number is odd');
+    END IF;
+END;
+/
+
+Sample Output:
+
+Enter value for n: 9
+The number is odd
+
+
+---
+
+Query 3 – Greatest of Three Numbers
+
+DECLARE
+    a NUMBER(2);
+    b NUMBER(2);
+    c NUMBER(2);
+BEGIN
+    a := &a;
+    b := &b;
+    c := &c;
+
+    IF a > b AND a > c THEN
+        DBMS_OUTPUT.PUT_LINE('Greatest number is ' || a);
+    ELSIF b > a AND b > c THEN
+        DBMS_OUTPUT.PUT_LINE('Greatest number is ' || b);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Greatest number is ' || c);
+    END IF;
+END;
+/
+
+Sample Output:
+
+Enter values: a=9, b=67, c=121
+Greatest number is 121
+
+
+---
+
+Query 4 – Sum and Average of n Numbers
+
+DECLARE
+    count1 NUMBER(2);
+    sum1   NUMBER(2);
+    avg1   NUMBER(2);
+    n      NUMBER(2);
+BEGIN
+    n := &n;
+    sum1 := 0;
+    count1 := 1;
+
+    LOOP
+        sum1 := sum1 + count1;
+        count1 := count1 + 1;
+        EXIT WHEN count1 > n;
+    END LOOP;
+
+    avg1 := sum1 / n;
+
+    DBMS_OUTPUT.PUT_LINE('Sum is ' || sum1);
+    DBMS_OUTPUT.PUT_LINE('Average is ' || avg1);
+END;
+/
+
+Sample Output:
+
+Enter value for n: 7
+Sum is 28
+Average is 4
+
+
+---
+
+Query 5 – Grade Evaluation
+
+DECLARE
+    grade CHAR(1);
+BEGIN
+    grade := UPPER('&grade');
+
+    CASE grade
+        WHEN 'A' THEN DBMS_OUTPUT.PUT_LINE('Outstanding');
+        WHEN 'B' THEN DBMS_OUTPUT.PUT_LINE('Excellent');
+        WHEN 'C' THEN DBMS_OUTPUT.PUT_LINE('Very good');
+        WHEN 'D' THEN DBMS_OUTPUT.PUT_LINE('Good');
+        WHEN 'E' THEN DBMS_OUTPUT.PUT_LINE('Average');
+        WHEN 'F' THEN DBMS_OUTPUT.PUT_LINE('Fail');
+        ELSE DBMS_OUTPUT.PUT_LINE('Invalid grade');
+    END CASE;
+END;
+/
+
+Sample Output:
+
+Enter value for grade: c
+Very good
+
+
+---
+
+✨ Now you have all 5 queries rewritten in clean PL/SQL format.
+
+Do you want me to also add step-by-step explanations for each query (so you can use them as notes for exams), or just keep the code clean?
+
+
